@@ -9,7 +9,10 @@ our @EXPORT = qw/slots_short slots_unshort/;
 
 use List::MoreUtils qw/uniq/;
 
-use constant {
+use constant {  # Не приходилось пользоваться таким способом формировать конфиги. 
+                # наверное, для крупных массивов кода это даже очень удобно,
+                # но тревожит разрастание сущностей, хотя то е дело привычки.
+    
     OPTION_DELIMITER => ',',
 };
 
@@ -24,7 +27,7 @@ sub slots_unshort($) {
     my @result;
     my @data = split OPTION_DELIMITER, $data;
 
-    foreach my $element (@data) {   #"el" transformed to "element". I hate short vars names.
+    foreach my $element (@data) {   #sorry, "el" transformed to "element". I hate short vars names.
         if ($element =~ m/^\s*\d+\s*$/) {
             push @result, $element;
         }
@@ -40,7 +43,6 @@ sub slots_unshort($) {
     return @result;
 }
 
- 
 
 #------------------------------
 sub slots_short(@) {
