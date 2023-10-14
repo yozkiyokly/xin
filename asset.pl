@@ -1,52 +1,28 @@
-package R::CLI::SlotsShort;
-
- 
+package R::CLI::SlotsShort;  #Короткие слоты? Видимо, укороченеие слотов. Будем смотреть..
 
 use 5.010;
-
 use strict;
-
 use warnings;
-
- 
-
 use Exporter;
-
 our @ISA = qw/Exporter/;
-
 our @EXPORT = qw/slots_short slots_unshort/;
-
- 
 
 use List::MoreUtils qw/uniq/;
 
- 
-
 use constant {
     OPTION_DELIMITER => ',',
-
 };
 
- 
+# Сокращаю все переносы строк, разбавляющие вид кода. 
 
 #------------------------------
-
 # Public API
-
 #------------------------------
-
- 
 
 sub slots_unshort($) {
     my $data = shift;
-
- 
-
     my @result;
-
     my @data = split OPTION_DELIMITER, $data;
-
- 
 
     foreach my $el (@data) {
         if ($el =~ m/^\s*\d+\s*$/) {
