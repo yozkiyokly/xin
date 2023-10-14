@@ -23,14 +23,21 @@ use constant {  # Не приходилось пользоваться таки�
 #------------------------------
 
 sub slots_unshort($) {
-    my $data = shift;
+    my $data = shift;   # i diskile this "=shift". Perl would be much simpler with 
+                        # autoimport named vars inside functions.
     my @result;
-    my @data = split OPTION_DELIMITER, $data;
+    my @data = split OPTION_DELIMITER, $data;  
 
     foreach my $element (@data) {   #sorry, "el" transformed to "element". I hate short vars names.
         if ($element =~ m/^\s*\d+\s*$/) {
             push @result, $element;
         }
+####################
+# Тут становится ясно, что на входе какой-то текст, разделённый запятыми,
+# и в нём может случаться такое: 
+#    23 , 33, 5-4   , 8 , 4-11, 4, 54 , 23 , 3-8 , 1-1 , 2-2 , 
+# При этом варианты 2-2 - нечто особенное.
+###################
 
         elsif ($element =~ m/^\s*(\d+)-(\d+)\s*$/) {
             my @elements = get_element($1,$2);
