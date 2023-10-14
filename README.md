@@ -1,6 +1,4 @@
 # xin
-This is a _private_ repository for Xin only, 
-because unpermitted code publishing would be bad idea.
 
 run.pl - Это файл-запускалка. 
 SlotsShort.pm содержит все отладочные выкрутасы и комментарии разбора кода
